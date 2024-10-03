@@ -26,8 +26,58 @@ The Histogram of gray scale image and color image is shown.
 
 ## Program:
 ```python
-# Developed By: 
-# Register Number: 
+# Developed By: Ranjan K
+# Register Number: 212222230116
+
+
+import cv2
+import numpy as np
+from matplotlib import pyplot as plt
+
+# Load the color image
+image = cv2.imread('/content/uiop.jpg')
+
+
+# Convert the image to grayscale
+gray_image = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
+
+hist_original = cv2.calcHist([gray_image], [0], None, [256], [0, 256])
+
+# Apply histogram equalization
+equalized_image = cv2.equalizeHist(gray_image)
+
+# Plotting the original grayscale image, equalized image, and histograms
+plt.figure(figsize=(10, 7))
+
+# Show original grayscale image
+plt.subplot(2, 2, 1)
+plt.imshow(gray_image, cmap='gray')
+plt.title('Original Grayscale Image')
+plt.axis('off')
+
+
+
+# Show equalized grayscale image
+plt.subplot(2, 2, 2)
+plt.imshow(equalized_image, cmap='gray')
+plt.title('Equalized Image')
+plt.axis('off')
+
+# Plot histogram of the original grayscale image
+plt.subplot(2, 2, 3)
+plt.plot(hist_original, color='black')
+plt.title('Original Histogram')
+plt.xlim([0, 256])
+
+# Plot histogram of the equalized image
+plt.subplot(2, 2, 4)
+hist_equalized = cv2.calcHist([equalized_image], [0], None, [256], [0, 256])
+plt.plot(hist_equalized, color='black')
+plt.title('Equalized Histogram')
+plt.xlim([0, 256])
+
+plt.tight_layout()
+plt.show()
 
 
 
@@ -37,13 +87,10 @@ The Histogram of gray scale image and color image is shown.
 ```
 ## Output:
 ### Input Grayscale Image and Color Image
-
-
 ### Histogram of Grayscale Image and any channel of Color Image
-
-
-
 ### Histogram Equalization of Grayscale Image.
+
+<img width="789" alt="Screenshot 2024-10-03 at 10 48 36 AM" src="https://github.com/user-attachments/assets/6dc5f706-1803-4e9b-87d9-c65f4e5fc176">
 
 
 
